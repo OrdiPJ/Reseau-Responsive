@@ -1,0 +1,25 @@
+{
+  "name": "reseau",
+  "version": "1.0.0",
+  "description": "Mon site de réseau sociale",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/pjs-inc/reseau-responsive.git"
+  },
+  "author": "OrdiPJ",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/pjs-inc/reseau-responsive/issues"
+  },
+  "homepage": "https://gitlab.com/pjs-inc/reseau-responsive#readme",
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.2"
+  }
+}
