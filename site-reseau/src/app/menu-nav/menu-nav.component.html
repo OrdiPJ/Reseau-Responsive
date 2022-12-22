@@ -16,9 +16,43 @@
             <a class="nav-link text-bg-primary" routerLink="/contact">Nous contacter</a>
           </li>
         </ul>
-        <form class="d-flex" routerLink="/login">
-          <button class="btn btn-outline-light" type="submit">Se connecter</button>
+        <form class="d-flex">
+          <button class="btn btn-outline-light" type="button" data-bs-toggle="modal" data-bs-target="#loginModal">Se connecter</button>
         </form>
       </div>
     </div>
 </nav>
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Se connecter</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <form class="needs-validation" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="mb-3">
+            <label for="username" class="form-label">Nom d'utilisateur :</label>
+            <input type="text" id="username" class="form-control" [ngClass]="(username!.touched || username!.dirty) && username!.invalid ? 'is-invalid' : ''" formControlName="username" required> 
+            <div class="invalid-feedback">
+              Veuillez saisir votre nom d'utilisateur.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Mot de passe :</label>
+            <input type="password" id="password" class="form-control" [ngClass]="(password!.touched || password!.dirty) && password!.invalid ? 'is-invalid' : ''" formControlName="password" required>
+            <div class="invalid-feedback">
+              Veuillez saisir votre mot de passe.
+            </div>
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Se connecter</button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <p>Pas de compte ? <a routerLink="register" data-bs-dismiss="modal">S'inscrire</a></p>
+      </div>
+    </div>
+  </div>
+</div>
