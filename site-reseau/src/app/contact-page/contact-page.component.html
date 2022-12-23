@@ -1,20 +1,25 @@
 <section class="container-md container-sticky-center mt-3">
-    <form class="mb-3 needs-validation" (ngSubmit)="onSubmit()">
+    <form class="mb-3 needs-validation" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
       <div class="mb-3">
-        <label for="email" class="form-label">Adresse email</label>
-        <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" placeholder="adresse@email.fr" required>
+        <label for="email" class="form-label">Adresse email :</label>
+        <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" placeholder="adresse@email.fr" [ngClass]="email!.invalid && (email!.dirty || email!.touched) ? 'is-invalid' : ''" required>
         <div class="invalid-feedback">
-          Veuillez saisir un email valide.
+          <div *ngIf="email!.errors?.['required']">
+            Veuillez saisir votre adresse email.
+          </div>
+          <div *ngIf="email!.errors?.['email']">
+            L'adresse email spécifiée n'est pas valide.
+          </div>
         </div>
       </div>
       <div class="mb-3">
-        <label for="msg" class="form-label">Message</label>
-        <textarea class="form-control" name="msg" id="msg" formControlName="msg" cols="30" rows="10" style="resize: none;" required></textarea>
+        <label for="msg" class="form-label">Message :</label>
+        <textarea class="form-control" name="msg" id="msg" formControlName="msg" cols="30" rows="10" style="resize: none;" [ngClass]="msg!.invalid && (msg!.dirty || msg!.touched) ? 'is-invalid' : ''" required></textarea>
         <div class="invalid-feedback">
           Veuillez saisir un message.
         </div>
       </div>
-      <button class="btn btn-primary" id="sendMsg" type="submit">Envoyer le message</button>
+      <button class="btn btn-primary" id="sendMsg" type="submit" [disabled]="!contactForm.valid">Envoyer le message</button>
     </form>
     <!-- <script src="assets/script-form-validate.js"></script> -->
 </section>

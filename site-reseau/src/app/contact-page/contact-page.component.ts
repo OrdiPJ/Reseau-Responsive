@@ -6,41 +6,17 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
   templateUrl: './contact-page.component.html',
   styleUrls: ['./contact-page.component.css']
 })
-export class ContactPageComponent implements OnInit {
-	contactForm!: FormGroup;
+export class ContactPageComponent {
+	contactForm = new FormGroup({
+		email: new FormControl('', [Validators.required, Validators.email]),
+		msg: new FormControl('', Validators.required),
+	});
 
-	ngOnInit(): void {
-		this.contactForm = new FormGroup({
-			email: new FormControl('', [
-				Validators.required,
-				Validators.email
-			]),
-			msg: new FormControl('', [Validators.required])
-		});
-	}
-	// contactForm = this.fb.group({
-	// 	email: ['', [Validators.required, Validators.email]],
-	// 	msg: ['']
-	// })
-	// contactForm = new FormGroup({
-	// 	email: new FormControl('', [
-	// 		Validators.required,
-	// 	]),
-	// 	msg: new FormControl('')
-	// });
-	
+	get email() { return this.contactForm.get('email'); }
+	get msg() { return this.contactForm.get('msg'); }
+
 	onSubmit() {
-		const forms: NodeListOf<HTMLFormElement> = document.querySelectorAll('.needs-validation')
-		Array.from(forms).forEach(form => {
-			form.addEventListener('submit', event => {
-				if (!form.checkValidity()) {
-					event.preventDefault()
-					event.stopPropagation()
-				}
-
-				form.classList.add('was-validated')
-			}, false)
-		});
+		
 	}
 	
 }
